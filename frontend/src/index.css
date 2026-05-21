@@ -1,0 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;900&family=Barlow:wght@300;400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html { scroll-behavior: smooth; }
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: #111214; }
+  ::-webkit-scrollbar-thumb { background: #e8f216; }
+}
+
+@layer utilities {
+  .opacity-8  { opacity: 0.08; }
+  .opacity-14 { opacity: 0.14; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(-2deg); }
+  50%       { transform: translateY(-18px) rotate(2deg); }
+}

@@ -1,0 +1,28 @@
+from django.core.management.base import BaseCommand
+from strikezone.apps.products.models import Product
+
+
+PRODUCTS = [
+    dict(id=1,  name='M3+',           brand='Dye',            category='Маркеры',    emoji='🎯', price=89990, old_price=None, badge='hit',  rating=5, reviews=128),
+    dict(id=2,  name='CS3',           brand='Planet Eclipse', category='Маркеры',    emoji='🎯', price=74500, old_price=None, badge='new',  rating=5, reviews=64),
+    dict(id=3,  name='Axe 2.0',       brand='Empire',         category='Маркеры',    emoji='🎯', price=32900, old_price=41000, badge='sale', rating=4, reviews=211),
+    dict(id=4,  name='i5 Goggle',     brand='Dye',            category='Маски',      emoji='🥽', price=22500, old_price=None, badge='hit',  rating=5, reviews=345),
+    dict(id=5,  name='EVS',           brand='Empire',         category='Маски',      emoji='🥽', price=18900, old_price=24000, badge='sale', rating=4, reviews=89),
+    dict(id=6,  name='HSTL',          brand='HK Army',        category='Маски',      emoji='🥽', price=9990,  old_price=None, badge='new',  rating=4, reviews=52),
+    dict(id=7,  name='SL2 68ci',      brand='Ninja',          category='Баллоны',    emoji='💨', price=16500, old_price=None, badge=None,   rating=5, reviews=73),
+    dict(id=8,  name='Carbon Fiber',  brand='Empire',         category='Баллоны',    emoji='💨', price=12800, old_price=15000, badge='sale', rating=4, reviews=41),
+    dict(id=9,  name='Pad Set',       brand='HK Army',        category='Защита',     emoji='🛡️', price=6500,  old_price=None, badge='new',  rating=4, reviews=167),
+    dict(id=10, name='Primo Loader',  brand='Proto',          category='Аксессуары', emoji='📦', price=3200,  old_price=None, badge=None,   rating=4, reviews=93),
+    dict(id=11, name='Spire IV',      brand='Virtue',         category='Аксессуары', emoji='📦', price=14900, old_price=None, badge='hit',  rating=5, reviews=208),
+    dict(id=12, name='Cronus',        brand='Tippmann',       category='Маркеры',    emoji='🎯', price=18500, old_price=None, badge=None,   rating=4, reviews=512),
+]
+
+
+class Command(BaseCommand):
+    help = 'Seed initial product data'
+
+    def handle(self, *args, **kwargs):
+        Product.objects.all().delete()
+        for p in PRODUCTS:
+            Product.objects.create(**p)
+        self.stdout.write(self.style.SUCCESS(f'Seeded {len(PRODUCTS)} products'))
