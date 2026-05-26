@@ -2,6 +2,7 @@ import random
 from rest_framework import serializers, status
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from rest_framework.permissions import IsAuthenticated
 from .models import Order, OrderItem
 from strikezone.apps.products.models import Product
 
@@ -16,30 +17,19 @@ class OrderItemSerializer(serializers.Serializer):
 
 
 class OrderCreateSerializer(serializers.Serializer):
-    # Contact
     first_name = serializers.CharField()
     last_name = serializers.CharField()
     phone = serializers.CharField()
     email = serializers.EmailField()
     comment = serializers.CharField(required=False, allow_blank=True)
-
-    # Delivery
-    delivery_type = serializers.ChoiceField(choices=[
-        'courier', 'free', 'cdek', 'post', 'pickup'
-    ])
+    delivery_type = serializers.ChoiceField(choices=['courier', 'free', 'cdek', 'post', 'pickup'])
     city = serializers.CharField()
     region = serializers.CharField(required=False, allow_blank=True)
     zip_code = serializers.CharField(required=False, allow_blank=True)
     street = serializers.CharField()
     house = serializers.CharField(required=False, allow_blank=True)
-
-    # Payment
     payment_type = serializers.ChoiceField(choices=['card', 'sbp', 'cash', 'invoice'])
-
-    # Promo
     promo_code = serializers.CharField(required=False, allow_blank=True)
-
-    # Cart
     items = OrderItemSerializer(many=True)
 
     def validate_items(self, value):
@@ -49,18 +39,17 @@ class OrderCreateSerializer(serializers.Serializer):
 
 
 class OrderCreateView(APIView):
-    """POST /api/orders/"""
+    """POST /api/orders/ — требует авторизации"""
+    permission_classes = [IsAuthenticated]
+
     def post(self, request):
         serializer = OrderCreateSerializer(data=request.data)
         if not serializer.is_valid():
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
         data = serializer.validated_data
-
-        # Resolve products
         delivery_costs = {
-            'courier': 350, 'free': 0, 'cdek': 400,
-            'post': 300, 'pickup': 0,
+            'courier': 350, 'free': 0, 'cdek': 400, 'post': 300, 'pickup': 0,
         }
         delivery_cost = delivery_costs.get(data['delivery_type'], 0)
 
@@ -74,16 +63,13 @@ class OrderCreateView(APIView):
                     {'detail': f"Товар {item['product_id']} не найден"},
                     status=status.HTTP_400_BAD_REQUEST
                 )
-            line = product.price * item['quantity']
-            subtotal += line
+            subtotal += product.price * item['quantity']
             items_to_create.append((product, item['quantity']))
 
-        # Promo
         promo_code = data.get('promo_code', '').upper()
         discount_rate = PROMO_CODES.get(promo_code, 0)
         discount = round(subtotal * discount_rate)
         total = subtotal + delivery_cost - discount
-
         order_number = f"SZ-{random.randint(10000, 99999)}"
 
         order = Order.objects.create(
@@ -106,7 +92,6 @@ class OrderCreateView(APIView):
             total=total,
             order_number=order_number,
         )
-
         for product, qty in items_to_create:
             OrderItem.objects.create(
                 order=order,
@@ -124,7 +109,6 @@ class OrderCreateView(APIView):
 
 
 class ValidatePromoView(APIView):
-    """POST /api/orders/validate-promo/"""
     def post(self, request):
         code = request.data.get('code', '').upper()
         discount = PROMO_CODES.get(code)
