@@ -4,7 +4,7 @@ import ProductCard from './ProductCard';
 
 const FILTERS = ['Все', 'Маркеры', 'Маски', 'Баллоны', 'Защита', 'Аксессуары'];
 
-export default function Products({ onProductAdded, onOpenAuth }) {
+export default function Products({ onProductAdded, onOpenAuth, onOpenProduct }) {
   const [activeFilter, setActiveFilter] = useState('Все');
   const { products, loading } = useProducts(activeFilter);
 
@@ -18,9 +18,7 @@ export default function Products({ onProductAdded, onOpenAuth }) {
       </div>
       <div className="flex flex-wrap gap-2 mb-12">
         {FILTERS.map((f) => (
-          <button
-            key={f}
-            onClick={() => setActiveFilter(f)}
+          <button key={f} onClick={() => setActiveFilter(f)}
             className={`font-['Barlow_Condensed'] font-semibold text-[13px] tracking-widest uppercase px-5 py-2 border transition-all ${
               activeFilter === f
                 ? 'bg-[#e8f216] border-[#e8f216] text-[#0a0a0a]'
@@ -36,7 +34,13 @@ export default function Products({ onProductAdded, onOpenAuth }) {
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-0.5">
           {products.map((p) => (
-            <ProductCard key={p.id} product={p} onAdded={onProductAdded} onOpenAuth={onOpenAuth} />
+            <ProductCard
+              key={p.id}
+              product={p}
+              onAdded={onProductAdded}
+              onOpenAuth={onOpenAuth}
+              onOpenProduct={onOpenProduct}
+            />
           ))}
         </div>
       )}
