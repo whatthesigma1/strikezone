@@ -72,9 +72,11 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # CORS — allow React dev server
 CORS_ALLOWED_ORIGINS = [
+    'https://strikezone-diplom-357654.netlify.app',
     'http://localhost:5173',
-    'http://localhost:3000',
 ]
+
+ALLOWED_HOSTS = ['strikezone-1.onrender.com', 'localhost', '127.0.0.1']
 
 # DRF
 REST_FRAMEWORK = {
