@@ -10,7 +10,7 @@ export default function Hero() {
         </div>
 
         {/* Title */}
-        <h1 className="font-['Barlow_Condensed'] font-black uppercase text-white leading-[0.88] mb-8 text-[clamp(64px,7vw,108px)]">
+        <h1 className="font-['Barlow_Condensed'] font-black uppercase text-white leading-[0.88] mb-7 text-[clamp(64px,6vw,108px)]">
           СНАРЯЖЕНИЕ<br />
           ДЛЯ<br />
           <span className="text-[#e8f216]">ПОБЕДЫ</span>
