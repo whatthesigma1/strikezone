@@ -7,7 +7,8 @@ from .models import Product
 class ProductAdmin(admin.ModelAdmin):
     list_display = [
         'id', 'colored_name', 'brand', 'category',
-        'formatted_price', 'badge_display', 'stock_status', 'rating', 'reviews'
+        'formatted_price', 'badge_display', 'stock_status', 'rating', 'reviews',
+        'in_stock'
     ]
     list_display_links = ['id', 'colored_name']
     list_filter = ['category', 'badge', 'in_stock', 'brand']
