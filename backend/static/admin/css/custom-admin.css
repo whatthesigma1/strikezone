@@ -1,0 +1,416 @@
+:root {
+    --primary: #111827;
+    --primary-strong: #050816;
+    --accent: #f59e0b;
+    --accent-soft: #fbbf24;
+    --surface: #ffffff;
+    --surface-muted: #f3f4f6;
+    --surface-dark: #0f172a;
+    --text: #111827;
+    --text-soft: #6b7280;
+    --border: rgba(17, 24, 39, 0.1);
+    --success: #16a34a;
+    --shadow: 0 24px 60px rgba(15, 23, 42, 0.14);
+}
+
+body {
+    background:
+        radial-gradient(circle at top left, rgba(245, 158, 11, 0.18), transparent 28%),
+        radial-gradient(circle at top right, rgba(59, 130, 246, 0.16), transparent 24%),
+        linear-gradient(180deg, #f8fafc 0%, #eef2f7 100%);
+    color: var(--text);
+}
+
+#header {
+    background: linear-gradient(135deg, var(--primary-strong), var(--primary));
+    color: #fff;
+    box-shadow: 0 14px 30px rgba(15, 23, 42, 0.22);
+}
+
+#header a:link,
+#header a:visited {
+    color: #fff;
+}
+
+#branding {
+    float: none;
+}
+
+.sz-brand {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.sz-brand__mark {
+    width: 42px;
+    height: 42px;
+    display: grid;
+    place-items: center;
+    border-radius: 14px;
+    background: linear-gradient(135deg, var(--accent), #f97316);
+    color: #111827;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45);
+}
+
+.sz-brand__text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.sz-brand__text a {
+    font-size: 1.15rem;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.sz-brand__text span {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.88rem;
+}
+
+div.breadcrumbs {
+    background: rgba(17, 24, 39, 0.92);
+    color: rgba(255, 255, 255, 0.82);
+    border: 0;
+}
+
+div.breadcrumbs a {
+    color: #fff;
+}
+
+#content {
+    padding: 28px 32px;
+}
+
+.module,
+.inline-group,
+#changelist-filter,
+.submit-row,
+.paginator,
+.selector,
+.calendarbox,
+.clockbox,
+form .aligned div,
+.dashboard #content-main .module {
+    border-radius: 18px;
+}
+
+.module,
+.inline-group,
+#changelist-filter,
+.submit-row,
+.paginator,
+.selector,
+.dashboard #content-main .module,
+.dashboard #content-related .module {
+    background: rgba(255, 255, 255, 0.92);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+}
+
+.module h2,
+.module caption,
+.inline-group h2 {
+    background: linear-gradient(135deg, rgba(17, 24, 39, 0.98), rgba(31, 41, 55, 0.92));
+    color: #fff;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+}
+
+a:link,
+a:visited {
+    color: #0f4c81;
+}
+
+a:hover {
+    color: #f97316;
+}
+
+input,
+textarea,
+select,
+.vTextField,
+.vLargeTextField {
+    border-radius: 12px !important;
+    border: 1px solid rgba(148, 163, 184, 0.45) !important;
+    padding: 10px 12px !important;
+    background: rgba(255, 255, 255, 0.95) !important;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    border-color: rgba(245, 158, 11, 0.8) !important;
+    box-shadow: 0 0 0 4px rgba(245, 158, 11, 0.14) !important;
+}
+
+.button,
+input[type=submit],
+input[type=button],
+.submit-row input,
+a.button {
+    border-radius: 999px !important;
+    background: linear-gradient(135deg, var(--accent), #f97316) !important;
+    color: #111827 !important;
+    border: 0 !important;
+    font-weight: 700;
+    padding: 12px 18px !important;
+    box-shadow: 0 14px 28px rgba(249, 115, 22, 0.18);
+}
+
+.button.default,
+input[type=submit].default,
+.submit-row input.default {
+    background: linear-gradient(135deg, var(--accent), #f97316) !important;
+}
+
+.button:hover,
+input[type=submit]:hover,
+input[type=button]:hover,
+a.button:hover {
+    filter: brightness(1.04);
+    transform: translateY(-1px);
+}
+
+table thead th {
+    background: rgba(15, 23, 42, 0.94);
+    color: #fff;
+}
+
+tr:nth-child(even),
+.row-form-errors {
+    background: rgba(248, 250, 252, 0.7);
+}
+
+.dashboard .module table th {
+    width: 100%;
+}
+
+.dashboard .module table td,
+.dashboard .module table th,
+#changelist table td,
+#changelist table th {
+    padding-top: 14px;
+    padding-bottom: 14px;
+}
+
+.sz-dashboard-intro {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    gap: 20px;
+    margin-bottom: 24px;
+    padding: 28px 30px;
+    border-radius: 28px;
+    background:
+        radial-gradient(circle at top left, rgba(245, 158, 11, 0.22), transparent 30%),
+        linear-gradient(135deg, rgba(15, 23, 42, 0.98), rgba(30, 41, 59, 0.94));
+    color: #fff;
+    box-shadow: var(--shadow);
+}
+
+.sz-kicker {
+    margin: 0 0 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    font-size: 0.76rem;
+    color: rgba(255, 255, 255, 0.62);
+}
+
+.sz-dashboard-intro h1 {
+    margin: 0 0 10px;
+    font-size: 2rem;
+    line-height: 1.05;
+}
+
+.sz-dashboard-intro p {
+    margin: 0;
+    max-width: 620px;
+    color: rgba(255, 255, 255, 0.78);
+}
+
+.sz-dashboard-notes {
+    display: grid;
+    gap: 10px;
+}
+
+.sz-dashboard-notes span {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 14px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    white-space: nowrap;
+}
+
+.login #container {
+    min-height: 100vh;
+    background: transparent;
+}
+
+.login #content {
+    padding: 36px 24px 48px;
+}
+
+.login #header,
+.login div.breadcrumbs {
+    display: none;
+}
+
+.sz-login-shell {
+    max-width: 1180px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(340px, 430px);
+    gap: 32px;
+    align-items: stretch;
+}
+
+.sz-login-hero,
+.sz-login-card {
+    border-radius: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.24);
+    box-shadow: var(--shadow);
+}
+
+.sz-login-hero {
+    position: relative;
+    overflow: hidden;
+    padding: 44px;
+    background:
+        radial-gradient(circle at top left, rgba(245, 158, 11, 0.34), transparent 26%),
+        radial-gradient(circle at bottom right, rgba(59, 130, 246, 0.22), transparent 24%),
+        linear-gradient(135deg, rgba(2, 6, 23, 0.98), rgba(15, 23, 42, 0.96));
+    color: #fff;
+}
+
+.sz-login-hero h1 {
+    margin: 0 0 16px;
+    font-size: clamp(2rem, 4vw, 3.4rem);
+    line-height: 0.96;
+}
+
+.sz-subtitle {
+    max-width: 560px;
+    margin: 0 0 28px;
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.76);
+}
+
+.sz-login-stats {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+    margin-top: auto;
+}
+
+.sz-login-stats div {
+    padding: 18px;
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+}
+
+.sz-login-stats strong {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 1rem;
+}
+
+.sz-login-stats span {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.92rem;
+}
+
+.sz-login-card {
+    padding: 32px 28px 26px;
+    background: rgba(255, 255, 255, 0.94);
+}
+
+.sz-login-card__head h2 {
+    margin: 0 0 8px;
+    font-size: 1.7rem;
+}
+
+.sz-login-card__head p {
+    margin: 0 0 24px;
+    color: var(--text-soft);
+}
+
+.login .form-row {
+    margin-bottom: 16px;
+}
+
+.login .form-row label {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--primary);
+    font-weight: 700;
+}
+
+.login .submit-row {
+    margin-top: 22px;
+    padding: 0;
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+}
+
+.login .submit-row input {
+    width: 100%;
+}
+
+.password-reset-link {
+    margin-top: 8px;
+}
+
+.password-reset-link a {
+    color: #b45309;
+    font-weight: 600;
+}
+
+ul.messagelist li,
+.errornote {
+    border-radius: 16px;
+    border: 1px solid rgba(239, 68, 68, 0.2);
+}
+
+@media (max-width: 980px) {
+    .sz-login-shell,
+    .sz-dashboard-intro {
+        grid-template-columns: 1fr;
+    }
+
+    .sz-dashboard-intro {
+        align-items: start;
+    }
+
+    .sz-login-stats {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 640px) {
+    #content {
+        padding: 20px 14px 28px;
+    }
+
+    .sz-login-hero,
+    .sz-login-card,
+    .sz-dashboard-intro {
+        padding: 24px 20px;
+        border-radius: 24px;
+    }
+
+    .sz-login-hero h1 {
+        font-size: 2.2rem;
+    }
+}

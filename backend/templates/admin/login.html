@@ -1,0 +1,75 @@
+{% extends "admin/base_site.html" %}
+{% load i18n static %}
+
+{% block bodyclass %}{{ block.super }} login sz-login-page{% endblock %}
+
+{% block content %}
+<div class="sz-login-shell">
+    <section class="sz-login-hero">
+        <p class="sz-kicker">Strikezone Control Panel</p>
+        <h1>Управляй магазином из одной панели.</h1>
+        <p class="sz-subtitle">
+            Обновляй каталог, следи за заказами и быстро находи пользователей без лишнего шума.
+        </p>
+        <div class="sz-login-stats">
+            <div>
+                <strong>Каталог</strong>
+                <span>Товары, цены и остатки</span>
+            </div>
+            <div>
+                <strong>Заказы</strong>
+                <span>Статусы и история покупок</span>
+            </div>
+            <div>
+                <strong>Клиенты</strong>
+                <span>Профили и доступы</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="sz-login-card">
+        {% if form.errors and not form.non_field_errors %}
+        <p class="errornote">
+            {% blocktranslate count counter=form.errors.items|length %}Исправьте ошибку ниже.{% plural %}Исправьте ошибки ниже.{% endblocktranslate %}
+        </p>
+        {% endif %}
+
+        {% if form.non_field_errors %}
+            {% for error in form.non_field_errors %}
+            <p class="errornote">{{ error }}</p>
+            {% endfor %}
+        {% endif %}
+
+        <div class="sz-login-card__head">
+            <h2>Вход в админку</h2>
+            <p>Используй аккаунт администратора для доступа к панели.</p>
+        </div>
+
+        <form action="{{ app_path }}" method="post" id="login-form">
+            {% csrf_token %}
+            <div class="form-row">
+                {{ form.username.errors }}
+                <label for="{{ form.username.id_for_label }}">Имя пользователя</label>
+                {{ form.username }}
+            </div>
+            <div class="form-row">
+                {{ form.password.errors }}
+                <label for="{{ form.password.id_for_label }}">Пароль</label>
+                {{ form.password }}
+                <input type="hidden" name="next" value="{{ next }}">
+            </div>
+
+            {% url 'admin_password_reset' as password_reset_url %}
+            {% if password_reset_url %}
+            <div class="password-reset-link">
+                <a href="{{ password_reset_url }}">Забыли пароль?</a>
+            </div>
+            {% endif %}
+
+            <div class="submit-row">
+                <input type="submit" value="{% translate 'Войти' %}">
+            </div>
+        </form>
+    </section>
+</div>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends "admin/base.html" %}
+{% load static %}
+
+{% block title %}{{ title }} | Strikezone Admin{% endblock %}
+
+{% block extrastyle %}
+{{ block.super }}
+<link rel="stylesheet" href="{% static 'admin/css/custom-admin.css' %}">
+{% endblock %}
+
+{% block branding %}
+<div class="sz-brand">
+    <div class="sz-brand__mark">SZ</div>
+    <div class="sz-brand__text">
+        <a href="{% url 'admin:index' %}">Strikezone Admin</a>
+        <span>Каталог, заказы и пользователи</span>
+    </div>
+</div>
+{% endblock %}
+
+{% block nav-global %}{% endblock %}
